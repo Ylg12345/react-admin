@@ -16,7 +16,6 @@ const items1: MenuProps['items'] = ['1', '2', '3'].map(key => ({
 }));
 
 const AdminLayout: FC<IAdminLayoutProps> = ({ children }) => {
-
 	return (
 		<>
 			<Layout style={{ height: '100vh' }}>

@@ -76,19 +76,14 @@ const LeftBar: FC<IProps> = () => {
 
 	return (
 		<div style={{minHeight: height + 'px'}}>
-			{
-				defaultKeys.length > 0 ?
-					< Menu
-							theme="dark"
-							mode="inline"
-							defaultSelectedKeys={defaultKeys}
-							defaultOpenKeys={defaultOpenKeys}
-					>
-							{generateMenu(leftRoute)}
-					</Menu>
-					:
-					null
-			}
+			< Menu
+					theme="dark"
+					mode="inline"
+					defaultSelectedKeys={defaultKeys}
+					defaultOpenKeys={defaultOpenKeys}
+			>
+					{generateMenu(leftRoute)}
+			</Menu>
 		</div>
 	)
 	

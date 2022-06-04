@@ -38,15 +38,15 @@ const View = () => {
       <Router>
         <Switch>
           <Route path={'/'} exact>
-	    <Redirect to={'/admin/dashboard'} />
-	  </Route>
+            <Redirect to={'/login'} />
+          </Route>
           <Route path={'/admin'}>
             <Switch>
               <AdminLayout>
-		<Suspense fallback={<></>}>
-			{generateRouter(authRoutes)}
-		</Suspense>
-	      </AdminLayout>
+                <Suspense fallback={<></>}>
+                  {generateRouter(authRoutes)}
+                </Suspense>
+              </AdminLayout>
             </Switch>
           </Route>
           {

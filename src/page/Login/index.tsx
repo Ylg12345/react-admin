@@ -1,9 +1,14 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { Form, FormInstance, Input, Button, Space, message } from "antd";
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
+import { doLogin } from '../../store/actions/AdminAction';
+import { useHistory, withRouter } from "react-router";
 import '../../assets/scss/login.scss'
 
 import { getLogin } from "../../network/login";
 import { set } from "../../utils/storage";
+import { RouteComponentProps } from "react-router-dom";
 
 const Layout = {
   labelCol: { span: 8 },
@@ -11,23 +16,34 @@ const Layout = {
 }
 
 const tailLayout = {
-  wrapperCol: {offset: 8, span: 16},
+  wrapperCol: { offset: 8, span: 16 },
 };
 
-const Login = () => {
+interface IProps extends RouteComponentProps {
+  login: (data: any) => void
+}
+
+
+const Login = ({ login }: IProps) => {
 
   const formRef = useRef<FormInstance>(null);
+  const history = useHistory();
 
-  const login = async (form: any) => {
 
-    getLogin(form.name, form.password).then(res => {                    
+  const onFinished = async (form: any) => {
+
+    getLogin(form.name, form.password).then(res => {
       const { code, msg } = res.data;
       if (code === 0) {
-          const { access_token } = res.data.data;
-          set('token', access_token)
+        const { access_token, admin } = res.data.data;
+        set('token', access_token);
+        login(admin);
+        history.push({
+          pathname: '/admin/dashboard'
+        })
       } else {
-          message.error(msg);
-          return Promise.reject(msg);
+        message.error(msg);
+        return Promise.reject(msg);
       }
     });
   }
@@ -39,7 +55,7 @@ const Login = () => {
       <Form
         id='login-form'
         {...Layout}
-        onFinish={login}
+        onFinish={onFinished}
         ref={formRef}
       >
         <Form.Item
@@ -79,11 +95,11 @@ const Login = () => {
 
         <Form.Item {...tailLayout}>
           <Space>
-            <Button 
-              type="primary" 
+            <Button
+              type="primary"
               htmlType="submit"
             >
-                登录
+              登录
             </Button>
           </Space>
         </Form.Item>
@@ -92,5 +108,9 @@ const Login = () => {
   )
 };
 
-
-export default Login;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  login: (data: any) => {
+    doLogin(dispatch, data)
+  },
+})
+export default connect(null, mapDispatchToProps)(withRouter(Login))

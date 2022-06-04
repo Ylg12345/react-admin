@@ -10,6 +10,7 @@ export interface AdminAction {
 export const doLogin = (dispatch: Dispatch, admin: any) => {
 	dispatch({ type: AdminType.LOGIN, data: { admin, loading: false } })
 }
+
 export const logout = (dispatch: Dispatch) => {
 	rm('token')
 	dispatch({

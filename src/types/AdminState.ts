@@ -1,9 +1,9 @@
 export interface IAdmin {
-    id: number
-    avatar: string
-    name: string
-    roleId: number
-    password: string
+    _id: number;
+    avatar: string;
+    username: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export interface AdminState {

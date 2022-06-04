@@ -5,11 +5,11 @@ import { AdminState } from '../../types/AdminState';
 const initAdminState: AdminState = {
 	loading: true,
 	admin: {
-		id: 0,
+		_id: 0,
 		avatar: '',
-		name: '',
-		roleId: 0,
-		password: ''
+		username: '',
+		createdAt: new Date(),
+		updatedAt: new Date()
 	}
 }
 const admin = (state: AdminState = initAdminState, action: AdminAction): AdminState => {

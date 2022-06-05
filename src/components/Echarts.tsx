@@ -34,7 +34,7 @@ const Echarts: FC<IProps> = ({ width, height, option }) => {
 	useEffect(() => {
 		let myChart = echarts.init(chart.current as unknown as HTMLElement);
 		myChart.setOption(option);
-	}, []);
+	}, [option]);
 
 
 	return (

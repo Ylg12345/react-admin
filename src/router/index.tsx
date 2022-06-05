@@ -3,14 +3,14 @@ import Login from "../page/Login"
 import Page404 from "../page/Page404"
 import { DashboardOutlined, UserOutlined, TeamOutlined, DashboardTwoTone } from '@ant-design/icons';
 import Page403 from "../page/Page403";
-import UserList from "../page/UserList";
-import Activity from "../page/Activity";
-import ProductList from "../page/ProductList";
-import RoleList from "../page/RoleList";
-import AdminList from "../page/AdminList";
-import AdminTest from "../page/AdminTest";
 
 const DashBoard = lazy(() => import("../page/DashBoard"))
+const UserList = lazy(() => import("../page/UserList"))
+const RoleList = lazy(() => import( '../page/RoleList'))
+const AdminList = lazy(() => import("../page/AdminList"))
+const Activity = lazy(() => import('../page/Activity'))
+const ProductList = lazy(() => import('../page/ProductList'))
+const AdminTest = lazy(() => import("../page/AdminTest"))
 
 export interface IRoute {
     id: string,
@@ -43,7 +43,7 @@ export const leftRoute: IRoute[] = [
 {
     id: '3-0',
     icon: <UserOutlined/>,
-    path: '/admin/list',
+    path: '/admin/admin',
     title: '管理员管理',
     isMenu: 1,
     routes: [
@@ -61,7 +61,25 @@ export const leftRoute: IRoute[] = [
             path: '/admin/admin/test',
             title: '管理员测试',
             isMenu: 0,
-            component: <AdminTest/>,
+            // component: <AdminTest/>,
+            routes: [
+                {
+                    id: '3-2-1',
+                    icon: <DashboardTwoTone/>,
+                    path: '/admin/admin/test/1',
+                    title: '角色列表1',
+                    isMenu: 0,
+                    component: <RoleList/>
+                },
+                {
+                    id: '3-2-2',
+                    icon: <DashboardTwoTone/>,
+                    path: '/admin/admin/test/2',
+                    title: '角色列表2',
+                    isMenu: 0,
+                    component: <RoleList/>
+                },
+            ]
         }
     ]
 },
@@ -102,7 +120,7 @@ export const leftRoute: IRoute[] = [
 {
     id: '6-0',
     icon: <TeamOutlined/>,
-    path: '',
+    path: '/admin/activity/',
     title: '活动管理',
     isMenu: 1,
     routes: [
@@ -119,7 +137,7 @@ export const leftRoute: IRoute[] = [
 {
     id: '7-0',
     icon: <TeamOutlined/>,
-    path: '',
+    path: '/admin/product',
     title: '产品管理',
     isMenu: 1,
     routes: [

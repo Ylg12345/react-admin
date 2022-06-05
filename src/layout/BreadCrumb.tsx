@@ -11,11 +11,14 @@ const BreadCrumb = (props: any) => {
   const generateBreadCrumb = (routerList: IRoute[]): ReactNode => {
     const { location } = props;
     let { pathname } = location;
+
     return (
       <>
         {
           routerList.map((router) => {
+            
             let match = matchPath(pathname, { path: router.path });
+
             if(match !== null) {
               return (
                 <>

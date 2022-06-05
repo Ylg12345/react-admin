@@ -61,23 +61,22 @@ export const leftRoute: IRoute[] = [
             path: '/admin/admin/test',
             title: '管理员测试',
             isMenu: 0,
-            // component: <AdminTest/>,
             routes: [
                 {
                     id: '3-2-1',
                     icon: <DashboardTwoTone/>,
                     path: '/admin/admin/test/1',
-                    title: '角色列表1',
+                    title: '管理员测试1',
                     isMenu: 0,
-                    component: <RoleList/>
+                    component: <AdminTest/>,
                 },
                 {
                     id: '3-2-2',
                     icon: <DashboardTwoTone/>,
                     path: '/admin/admin/test/2',
-                    title: '角色列表2',
+                    title: '管理员测试2',
                     isMenu: 0,
-                    component: <RoleList/>
+                    component: <AdminTest/>
                 },
             ]
         }

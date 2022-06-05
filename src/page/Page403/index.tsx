@@ -1,15 +1,17 @@
 import React from 'react'
 import { Button, Result } from "antd";
 import '../../assets/scss/error.scss'
-import { createBrowserHistory } from 'history';
+import { useHistory } from 'react-router-dom';
 
 
 const Page403 = () => {
 
-    const history = createBrowserHistory();
+    const history = useHistory();
 
     const backHome = () => {
-        history.push('/')
+      history.push({
+        pathname: '/'
+      });
     }
 
     return (

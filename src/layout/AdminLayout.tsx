@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react'
-import { Breadcrumb, Layout, Menu, MenuProps} from 'antd';
+import { Layout, Menu, MenuProps} from 'antd';
 import LeftBar from './LeftBar';
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { Header } from 'antd/lib/layout/layout';
@@ -29,11 +29,6 @@ const AdminLayout: FC<IAdminLayoutProps> = ({ children }) => {
 						<LeftBar />
 					</Sider>
 					<Layout style={{ padding: '0 24px 24px' }}>
-{/* 						<Breadcrumb style={{ margin: '16px 0' }}>
-							<Breadcrumb.Item>Home</Breadcrumb.Item>
-							<Breadcrumb.Item>List</Breadcrumb.Item>
-							<Breadcrumb.Item>App</Breadcrumb.Item>
-						</Breadcrumb> */}
 						<BreadCrumb />
 						<Content
 							className="site-layout-background"

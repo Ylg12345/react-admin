@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import { ReactNode, Suspense } from 'react';
 import AdminLayout from './AdminLayout';
 import { get } from '../utils/storage';
+import AuthRoute from '../components/AuthRoute';
 
 const View = () => {
 
@@ -20,14 +21,14 @@ const View = () => {
               )
             }
             return (
-              <Route path={router.path} exact key={router.id}>
+              <AuthRoute path={router.path} exact key={router.id}>
                 {
                   router.redirect ?
                     <Redirect to={router.redirect} from={router.path} />
                     :
                     router.component
                 }
-              </Route>
+              </AuthRoute>
             )
           })
         }

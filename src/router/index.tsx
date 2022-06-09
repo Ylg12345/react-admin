@@ -1,4 +1,4 @@
-import React, { lazy, ReactNode } from "react"
+import { lazy, ReactNode } from "react"
 import Login from "../page/Login"
 import Page404 from "../page/Page404"
 import { DashboardOutlined, UserOutlined, TeamOutlined, DashboardTwoTone } from '@ant-design/icons';
@@ -86,7 +86,6 @@ export const leftRoute: IRoute[] = [
 				id: '4-1',
 				icon: <DashboardTwoTone />,
 				path: '/admin/role/list',
-				redirect: '/admin/dashboard',
 				title: '角色列表',
 				component: <RoleList />
 			}
@@ -136,7 +135,7 @@ export const leftRoute: IRoute[] = [
 				component: <ProductList />
 			}
 		]
-	}
+	},
 ]
 export const topRoute: IRoute[] = []
 

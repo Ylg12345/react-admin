@@ -1,7 +1,7 @@
 import React, { useState, useEffect, FC } from 'react'
 import { Link, matchPath, RouteComponentProps, useHistory, withRouter } from 'react-router-dom'
 import { Menu } from 'antd';
-import { authRoutes, leftRoute } from '../router';
+import { authRoutes } from '../router/routerMenu'
 import { IRoute } from "../router";
 import SubMenu from 'antd/lib/menu/SubMenu';
 
@@ -82,7 +82,7 @@ const LeftBar: FC<IProps> = () => {
 					defaultSelectedKeys={defaultKeys}
 					defaultOpenKeys={defaultOpenKeys}
 			>
-					{generateMenu(leftRoute)}
+					{generateMenu(authRoutes)}
 			</Menu>
 		</div>
 	)

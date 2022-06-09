@@ -25,14 +25,9 @@ export interface IRoute {
 	icon?: ReactNode
 }
 
-export interface PermissionState {
-	loading: boolean
-	permissionList: IRoute[]
-}
-
-export const leftRoute: IRoute[] = [
+export const Routes: IRoute[] = [
 	{
-		id: '1-0',
+		id: '01',
 		icon: <DashboardOutlined />,
 		exact: true,
 		path: '/admin/dashboard',
@@ -40,125 +35,69 @@ export const leftRoute: IRoute[] = [
 		component: <DashBoard />
 	},
 	{
-		id: '3-0',
+		id: '02',
 		icon: <UserOutlined />,
-		path: '/admin/admin',
-		title: '管理员管理',
-		routes: [
-			{
-				id: '3-1',
-				icon: <UserOutlined />,
-				path: '/admin/admin/list',
-				title: '管理员列表',
-				component: <AdminList />,
-			},
-			{
-				id: '3-2',
-				icon: <UserOutlined />,
-				path: '/admin/admin/test',
-				title: '管理员测试',
-				routes: [
-					{
-						id: '3-2-1',
-						icon: <DashboardTwoTone />,
-						path: '/admin/admin/test/1',
-						title: '管理员测试1',
-						component: <AdminTest />,
-					},
-					{
-						id: '3-2-2',
-						icon: <DashboardTwoTone />,
-						path: '/admin/admin/test/2',
-						title: '管理员测试2',
-						component: <AdminTest />
-					},
-				]
-			}
-		]
+		path: '/admin/admin/list',
+		title: '管理员列表',
+		component: <AdminList />,
 	},
 	{
-		id: '4-0',
-		icon: <TeamOutlined />,
-		path: '/admin/role',
-		title: '角色管理',
-		routes: [
-			{
-				id: '4-1',
-				icon: <DashboardTwoTone />,
-				path: '/admin/role/list',
-				title: '角色列表',
-				component: <RoleList />
-			}
-		]
+		id: '03',
+		icon: <DashboardTwoTone />,
+		path: '/admin/admin/test/1',
+		title: '管理员测试1',
+		component: <AdminTest />,
 	},
 	{
-		id: '5-0',
-		icon: <TeamOutlined />,
-		path: '/admin/user',
-		title: '用户管理',
-		routes: [
-			{
-				id: '5-1',
-				icon: <DashboardTwoTone />,
-				path: '/admin/user/list',
-				title: '用户列表',
-				component: <UserList />
-			},
-		]
+		id: '04',
+		icon: <DashboardTwoTone />,
+		path: '/admin/admin/test/2',
+		title: '管理员测试2',
+		component: <AdminTest />
 	},
 	{
-		id: '6-0',
-		icon: <TeamOutlined />,
-		path: '/admin/activity/',
-		title: '活动管理',
-		routes: [
-			{
-				id: '6-1',
-				icon: <DashboardTwoTone />,
-				path: '/admin/activity/list',
-				title: '活动列表',
-				component: <Activity />
-			}
-		]
+		id: '05',
+		icon: <DashboardTwoTone />,
+		path: '/admin/role/list',
+		title: '角色列表',
+		component: <RoleList />
 	},
 	{
-		id: '7-0',
-		icon: <TeamOutlined />,
-		path: '/admin/product',
-		title: '产品管理',
-		routes: [
-			{
-				id: '7-1',
-				icon: <DashboardTwoTone />,
-				path: '/admin/product/list',
-				title: '产品列表',
-				component: <ProductList />
-			}
-		]
+		id: '06',
+		icon: <DashboardTwoTone />,
+		path: '/admin/user/list',
+		title: '用户列表',
+		component: <UserList />
 	},
-]
-export const topRoute: IRoute[] = []
-
-export const authRoutes: IRoute[] = [
-	...leftRoute,
-	...topRoute
-]
-export const unAuthRouters: IRoute[] = [
 	{
-		id: '1-0',
+		id: '07',
+		icon: <DashboardTwoTone />,
+		path: '/admin/activity/list',
+		title: '活动列表',
+		component: <Activity />
+	},
+	{
+		id: '08',
+		icon: <DashboardTwoTone />,
+		path: '/admin/product/list',
+		title: '产品列表',
+		component: <ProductList />
+	},
+	{
+		id: '09',
 		path: '/login',
 		title: '登录',
 		component: <Login />
 	},
 	{
-		id: '2-0',
+		id: '10',
 		path: '/403',
 		title: '403',
 		component: <Page403 />
 	},
 	{
-		id: '3-0',
-		path: '*',
+		id: '11',
+		path: '/404',
 		title: '404',
 		component: <Page404 />
 	}

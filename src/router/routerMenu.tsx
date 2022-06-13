@@ -1,4 +1,4 @@
-import { IRoute } from './index';
+import { IRoute } from './routerConfig';
 import { DashboardOutlined, UserOutlined, TeamOutlined, DashboardTwoTone } from '@ant-design/icons';
 
 export const leftRoute: IRoute[] = [
@@ -11,31 +11,31 @@ export const leftRoute: IRoute[] = [
 	{
 		id: '3-0',
 		icon: <UserOutlined />,
-		path: '/admin/admin',
+		path: '/admin/manage',
 		title: '管理员管理',
 		routes: [
 			{
 				id: '3-1',
 				icon: <UserOutlined />,
-				path: '/admin/admin/list',
+				path: '/admin/manage/list',
 				title: '管理员列表',
 			},
 			{
 				id: '3-2',
 				icon: <UserOutlined />,
-				path: '/admin/admin/test',
+				path: '/admin/manage/test',
 				title: '管理员测试',
 				routes: [
 					{
 						id: '3-2-1',
 						icon: <DashboardTwoTone />,
-						path: '/admin/admin/test/1',
+						path: '/admin/manage/test/1',
 						title: '管理员测试1',
 					},
 					{
 						id: '3-2-2',
 						icon: <DashboardTwoTone />,
-						path: '/admin/admin/test/2',
+						path: '/admin/manage/test/2',
 						title: '管理员测试2',
 					},
 				]

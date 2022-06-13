@@ -1,95 +1,72 @@
-import React, { useState, useEffect, FC } from 'react'
-import { Link, matchPath, RouteComponentProps, useHistory, withRouter } from 'react-router-dom'
+import { useState, useEffect, FC } from 'react'
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom'
 import { Menu } from 'antd';
 import { authRoutes } from '../router/routerMenu'
-import { IRoute } from "../router";
+import { IRoute } from "../router/routerConfig";
 import SubMenu from 'antd/lib/menu/SubMenu';
 
-interface IProps extends RouteComponentProps {
+interface IProps extends RouteComponentProps {}
 
-}
-
-const LeftBar: FC<IProps> = () => {
+const LeftBar: FC<IProps> = ({ location }) => {
 
 	const [height, setHeight] = useState<number>(0);
-	const [defaultKeys, setDefaultKeys] = useState<string[]>([]);
 	const [defaultOpenKeys, setDefaultOpenKeys] = useState<string[]>([]);
+	const [menuTreeNode, setMenuTreeNode] = useState<any>(null);
 
-	const history = useHistory();
-
-	const	highLightMenu = (authRoutes?: IRoute[], route?: IRoute) => {
-		let path = history.location.pathname
-		authRoutes?.forEach((r: IRoute) => {
-				let match = matchPath(path, {
-						path: r.path,
-						exact: true,
-						strict: false
-				})
-				if (match !== null) {
-						if (route) {
-							setDefaultKeys([...defaultKeys, r.id]);
-							setDefaultOpenKeys([...defaultOpenKeys, route.id]);
-						} else {
-							setDefaultKeys([...defaultKeys, r.id]);
-						}
-						return
-				} else {
-						highLightMenu(r?.routes, r);
+	const getMenuNodes = (menuList: any) => {
+		const { pathname } = location;
+    return menuList.reduce((pre: any, item: IRoute) => {
+			if (!item.routes) {
+				pre.push(
+					<Menu.Item 
+						key={item.id} 
+						icon={item.icon}
+					>
+						<Link to={item.path}>{item.title}</Link>
+					</Menu.Item>
+				);
+			} else {
+				const cItem = item.routes.find((r) => pathname.indexOf(r.path) === 0);
+				if(cItem) {
+					setDefaultOpenKeys([...defaultOpenKeys, item.path])
 				}
-		})
-	}
+				pre.push(
+					<SubMenu
+						key={item.id}
+						icon={item.icon}
+						title={item.title}
+					>
+						{getMenuNodes(item.routes)}
+					</SubMenu>
+				);
+			}
+      return pre;
+    }, []);
+  };
 
 	useEffect(() => {
+		setMenuTreeNode(getMenuNodes(authRoutes));
 		return () => {
-			highLightMenu(authRoutes);
 			setHeight(document.body.clientHeight - 62);
 		}
 	}, [])
 
-	const generateMenu = (routerList?: IRoute[]) => {
-		return (
-			<>
-				{
-					routerList?.map((router) => {
-							if (router.routes) {
-								return (
-									<SubMenu
-										key={router.id}
-										icon={router.icon}
-										title={router.title}
-									>
-										{generateMenu(router.routes)}
-									</SubMenu>
-								)
-							} 
-							return (
-								<Menu.Item key={router.id} icon={router.icon}>
-									<Link to={router.path}>{router.title}</Link>
-								</Menu.Item>
-							)
-						}
-					)
-				}
-			</>
-		)
-	}
-
 	return (
 		<div style={{minHeight: height + 'px'}}>
-			< Menu
-					theme="dark"
-					mode="inline"
-					defaultSelectedKeys={defaultKeys}
-					defaultOpenKeys={defaultOpenKeys}
-			>
-					{generateMenu(authRoutes)}
-			</Menu>
+			{
+				menuTreeNode?.map((item: any, index: number) => (
+					<Menu
+						mode="inline"
+						theme="dark"
+						selectedKeys={[location.pathname]}
+						defaultOpenKeys={defaultOpenKeys}
+					>
+						{item}
+					</Menu>
+				))
+			}
 		</div>
 	)
-	
-
 };
-
-
 
 export default withRouter(LeftBar)

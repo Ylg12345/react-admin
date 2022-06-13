@@ -1,5 +1,4 @@
 import { lazy, ReactNode } from "react"
-import Login from "../page/Login"
 import Page404 from "../page/Page404"
 import { DashboardOutlined, UserOutlined, TeamOutlined, DashboardTwoTone } from '@ant-design/icons';
 import Page403 from "../page/Page403";
@@ -37,21 +36,21 @@ export const Routes: IRoute[] = [
 	{
 		id: '02',
 		icon: <UserOutlined />,
-		path: '/admin/admin/list',
+		path: '/admin/manage/list',
 		title: '管理员列表',
 		component: <AdminList />,
 	},
 	{
 		id: '03',
 		icon: <DashboardTwoTone />,
-		path: '/admin/admin/test/1',
+		path: '/admin/manage/test/1',
 		title: '管理员测试1',
 		component: <AdminTest />,
 	},
 	{
 		id: '04',
 		icon: <DashboardTwoTone />,
-		path: '/admin/admin/test/2',
+		path: '/admin/manage/test/2',
 		title: '管理员测试2',
 		component: <AdminTest />
 	},
@@ -71,33 +70,27 @@ export const Routes: IRoute[] = [
 	},
 	{
 		id: '07',
-		icon: <DashboardTwoTone />,
+		icon: <TeamOutlined />,
 		path: '/admin/activity/list',
 		title: '活动列表',
 		component: <Activity />
 	},
 	{
 		id: '08',
-		icon: <DashboardTwoTone />,
+		icon: <TeamOutlined />,
 		path: '/admin/product/list',
 		title: '产品列表',
 		component: <ProductList />
 	},
 	{
 		id: '09',
-		path: '/login',
-		title: '登录',
-		component: <Login />
-	},
-	{
-		id: '10',
-		path: '/403',
+		path: '/admin/403',
 		title: '403',
 		component: <Page403 />
 	},
 	{
-		id: '11',
-		path: '/404',
+		id: '10',
+		path: '/admin/404',
 		title: '404',
 		component: <Page404 />
 	}

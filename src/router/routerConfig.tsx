@@ -1,7 +1,7 @@
-import { lazy, ReactNode } from "react"
-import Page404 from "../page/Page404"
+import { lazy, ReactNode } from "react";
 import { DashboardOutlined, UserOutlined, TeamOutlined, DashboardTwoTone } from '@ant-design/icons';
 import Page403 from "../page/Page403";
+import Page404 from "../page/Page404";
 
 const DashBoard = lazy(() => import("../page/DashBoard"))
 const UserList = lazy(() => import("../page/UserList"))
@@ -36,61 +36,61 @@ export const Routes: IRoute[] = [
 	{
 		id: '02',
 		icon: <UserOutlined />,
-		path: '/admin/manage/list',
+		path: '/manage/list',
 		title: '管理员列表',
 		component: <AdminList />,
 	},
 	{
 		id: '03',
 		icon: <DashboardTwoTone />,
-		path: '/admin/manage/test/1',
+		path: '/manage/test/1',
 		title: '管理员测试1',
 		component: <AdminTest />,
 	},
 	{
 		id: '04',
 		icon: <DashboardTwoTone />,
-		path: '/admin/manage/test/2',
+		path: '/manage/test/2',
 		title: '管理员测试2',
 		component: <AdminTest />
 	},
 	{
 		id: '05',
 		icon: <DashboardTwoTone />,
-		path: '/admin/role/list',
+		path: '/role/list',
 		title: '角色列表',
 		component: <RoleList />
 	},
 	{
 		id: '06',
 		icon: <DashboardTwoTone />,
-		path: '/admin/user/list',
+		path: '/user/list',
 		title: '用户列表',
 		component: <UserList />
 	},
 	{
 		id: '07',
 		icon: <TeamOutlined />,
-		path: '/admin/activity/list',
+		path: '/activity/list',
 		title: '活动列表',
 		component: <Activity />
 	},
 	{
 		id: '08',
 		icon: <TeamOutlined />,
-		path: '/admin/product/list',
+		path: '/product/list',
 		title: '产品列表',
 		component: <ProductList />
 	},
 	{
 		id: '09',
-		path: '/admin/403',
+		path: '/403',
 		title: '403',
 		component: <Page403 />
 	},
 	{
 		id: '10',
-		path: '/admin/404',
+		path: '/404',
 		title: '404',
 		component: <Page404 />
 	}

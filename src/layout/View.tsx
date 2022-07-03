@@ -11,31 +11,32 @@ const View = () => {
     <>
       <Router>
         <Switch>
-          <AdminLayout>
-            <Suspense fallback={<></>}>
-              <Route exact path="/login" component={Login} />
-              <Route path='/'>
-                <Redirect exact to="/admin/dashboard" />
-              </Route>
-              <Route path='/admin'>
-                {
-                  Routes.map((router) => {
-                    return (
-                      <AuthRoute path={router.path} exact key={router.id}>
-                        {
-                          router.redirect ?
-                            <Redirect to={router.redirect} from={router.path} />
-                            :
-                            router.component
-                        }
-                      </AuthRoute>
-                    )
-                  })
-                }
-                {/* <Redirect from='*' to="/404" /> */}
-              </Route>
-            </Suspense>
-          </AdminLayout>
+          <Route exact path="/login" component={Login} />
+          <Route path='/' exact>
+            <Redirect to="/admin/dashboard" />
+          </Route>
+          <Route>
+            <AdminLayout>
+              <Switch>
+                <Suspense fallback={<></>}>
+                  {
+                    Routes.map((router) => {
+                      return (
+                        <AuthRoute path={router.path} exact key={router.id}>
+                          {
+                            router.redirect ?
+                              <Redirect to={router.redirect} from={router.path} />
+                              :
+                              router.component
+                          }
+                        </AuthRoute>
+                      )
+                    })
+                  }
+                </Suspense>
+              </Switch>
+            </AdminLayout>
+          </Route>
         </Switch>
       </Router>
     </>

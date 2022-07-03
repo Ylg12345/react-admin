@@ -1,20 +1,23 @@
 import { useState, useEffect, FC } from 'react'
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom'
-import { Menu } from 'antd';
+import { Menu, MenuProps } from 'antd';
 import { authRoutes } from '../router/routerMenu'
 import { IRoute } from "../router/routerConfig";
 import SubMenu from 'antd/lib/menu/SubMenu';
 
 interface IProps extends RouteComponentProps {}
 
-const LeftBar: FC<IProps> = ({ location }) => {
+const LeftBar: FC<IProps> = ({ history }) => {
 
 	const [height, setHeight] = useState<number>(0);
-	const [defaultOpenKeys, setDefaultOpenKeys] = useState<string[]>([]);
 	const [menuTreeNode, setMenuTreeNode] = useState<any>(null);
+	const [current, setCurrent] = useState('1');
+
+	const onClick: MenuProps['onClick'] = e => {
+    setCurrent(e.key);
+  };
 
 	const getMenuNodes = (menuList: any) => {
-		const { pathname } = location;
     return menuList.reduce((pre: any, item: IRoute) => {
 			if (!item.routes) {
 				pre.push(
@@ -26,10 +29,6 @@ const LeftBar: FC<IProps> = ({ location }) => {
 					</Menu.Item>
 				);
 			} else {
-				const cItem = item.routes.find((r) => pathname.indexOf(r.path) === 0);
-				if(cItem) {
-					setDefaultOpenKeys([...defaultOpenKeys, item.path])
-				}
 				pre.push(
 					<SubMenu
 						key={item.id}
@@ -58,8 +57,9 @@ const LeftBar: FC<IProps> = ({ location }) => {
 					<Menu
 						mode="inline"
 						theme="dark"
-						selectedKeys={[location.pathname]}
-						defaultOpenKeys={defaultOpenKeys}
+						defaultOpenKeys={['sub1']}
+						selectedKeys={[current]}
+						onClick={onClick}
 					>
 						{item}
 					</Menu>

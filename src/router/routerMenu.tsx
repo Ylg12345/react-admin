@@ -11,31 +11,31 @@ export const leftRoute: IRoute[] = [
 	{
 		id: '3-0',
 		icon: <UserOutlined />,
-		path: '/admin/manage',
+		path: '/manage',
 		title: '管理员管理',
 		routes: [
 			{
 				id: '3-1',
 				icon: <UserOutlined />,
-				path: '/admin/manage/list',
+				path: '/manage/list',
 				title: '管理员列表',
 			},
 			{
 				id: '3-2',
 				icon: <UserOutlined />,
-				path: '/admin/manage/test',
+				path: '/manage/test',
 				title: '管理员测试',
 				routes: [
 					{
 						id: '3-2-1',
 						icon: <DashboardTwoTone />,
-						path: '/admin/manage/test/1',
+						path: '/manage/test/1',
 						title: '管理员测试1',
 					},
 					{
 						id: '3-2-2',
 						icon: <DashboardTwoTone />,
-						path: '/admin/manage/test/2',
+						path: '/manage/test/2',
 						title: '管理员测试2',
 					},
 				]
@@ -45,13 +45,13 @@ export const leftRoute: IRoute[] = [
 	{
 		id: '4-0',
 		icon: <TeamOutlined />,
-		path: '/admin/role',
+		path: '/role',
 		title: '角色管理',
 		routes: [
 			{
 				id: '4-1',
 				icon: <DashboardTwoTone />,
-				path: '/admin/role/list',
+				path: '/role/list',
 				title: '角色列表',
 			}
 		]
@@ -59,13 +59,13 @@ export const leftRoute: IRoute[] = [
 	{
 		id: '5-0',
 		icon: <TeamOutlined />,
-		path: '/admin/user',
+		path: '/user',
 		title: '用户管理',
 		routes: [
 			{
 				id: '5-1',
 				icon: <DashboardTwoTone />,
-				path: '/admin/user/list',
+				path: '/user/list',
 				title: '用户列表',
 			},
 		]
@@ -73,13 +73,13 @@ export const leftRoute: IRoute[] = [
 	{
 		id: '6-0',
 		icon: <TeamOutlined />,
-		path: '/admin/activity/',
+		path: '/activity/',
 		title: '活动管理',
 		routes: [
 			{
 				id: '6-1',
 				icon: <DashboardTwoTone />,
-				path: '/admin/activity/list',
+				path: '/activity/list',
 				title: '活动列表',
 			}
 		]
@@ -87,13 +87,13 @@ export const leftRoute: IRoute[] = [
 	{
 		id: '7-0',
 		icon: <TeamOutlined />,
-		path: '/admin/product',
+		path: '/product',
 		title: '产品管理',
 		routes: [
 			{
 				id: '7-1',
 				icon: <DashboardTwoTone />,
-				path: '/admin/product/list',
+				path: '/product/list',
 				title: '产品列表',
 			}
 		]

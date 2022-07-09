@@ -1,11 +1,32 @@
 import { Routes } from '../router/routerConfig'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import AdminLayout from './AdminLayout';
 import AuthRoute from '../components/AuthRoute';
 import Login from '../page/Login';
 
 const View = () => {
+
+  const urlParams = new URL(window.location.href);
+  const pathname = urlParams?.pathname;
+
+  const initalIsRedirect = Routes.map((item) => {
+    return false;
+  })
+
+  const [isRedirectArray, setIsRedirectArray] = useState(initalIsRedirect)
+
+  const isRedirect404 = () => {
+    Routes.forEach((item) => {
+      if(pathname === item.path) { 
+        setIsRedirectArray([...isRedirectArray, true]);
+      }
+    });
+  };
+
+  useEffect(() => {
+    isRedirect404();
+  }, [pathname])
 
   return (
     <>
@@ -23,15 +44,13 @@ const View = () => {
                     Routes.map((router) => {
                       return (
                         <AuthRoute path={router.path} exact key={router.id}>
-                          {
-                            router.redirect ?
-                              <Redirect to={router.redirect} from={router.path} />
-                              :
-                              router.component
-                          }
-                        </AuthRoute>
+                          {router.component}
+                        </AuthRoute> 
                       )
                     })
+                  }  
+                  {
+                    !isRedirectArray.find((item) => item === true) && <Redirect from={pathname} to='/404' />
                   }
                 </Suspense>
               </Switch>
@@ -44,5 +63,7 @@ const View = () => {
 }
 
 export default View;
+
+
 
 

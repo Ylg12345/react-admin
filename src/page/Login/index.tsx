@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Form, FormInstance, Input, Button, Space, message } from "antd";
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-import { doLogin } from '../../store/actions/AdminAction';
+import { setLogin } from '../../store/actions/AdminAction';
 import { useHistory, withRouter } from "react-router";
 import '../../assets/scss/login.scss'
 
@@ -20,11 +20,10 @@ const tailLayout = {
 };
 
 interface IProps extends RouteComponentProps {
-  login: (data: any) => void
+  setLoginAction: (data: any) => void;
 }
 
-
-const Login = ({ login }: IProps) => {
+const Login = ({ setLoginAction }: IProps) => {
 
   const formRef = useRef<FormInstance>(null);
   const history = useHistory();
@@ -37,7 +36,7 @@ const Login = ({ login }: IProps) => {
       if (code === 0) {
         const { access_token, admin } = res.data.data;
         set('token', access_token);
-        login(admin);
+        setLoginAction(admin);
         history.push({
           pathname: '/admin/dashboard'
         })
@@ -109,8 +108,8 @@ const Login = ({ login }: IProps) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  login: (data: any) => {
-    doLogin(dispatch, data)
+  setLoginAction: (data: any) => {
+    setLogin(dispatch, data)
   },
 })
 export default connect(null, mapDispatchToProps)(withRouter(Login))

@@ -4,10 +4,15 @@ import { Menu, MenuProps } from 'antd';
 import { authRoutes } from '../router/routerMenu'
 import { IRoute } from "../router/routerConfig";
 import SubMenu from 'antd/lib/menu/SubMenu';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { setCurrentPath } from '../store/actions/AdminAction';
 
-interface IProps extends RouteComponentProps {}
+interface IProps extends RouteComponentProps {
+	setCurrentPathAction: (data: any) => void
+}
 
-const LeftBar: FC<IProps> = ({ history }) => {
+const LeftBar: FC<IProps> = ({ location, setCurrentPathAction }: IProps) => {
 
 	const [height, setHeight] = useState<number>(0);
 	const [menuTreeNode, setMenuTreeNode] = useState<any>(null);
@@ -48,7 +53,11 @@ const LeftBar: FC<IProps> = ({ history }) => {
 		return () => {
 			setHeight(document.body.clientHeight - 62);
 		}
-	}, [])
+	}, []);
+
+	useEffect(() => {
+		setCurrentPathAction(location.pathname);
+	}, [location.pathname]);
 
 	return (
 		<div style={{minHeight: height + 'px'}}>
@@ -69,4 +78,9 @@ const LeftBar: FC<IProps> = ({ history }) => {
 	)
 };
 
-export default withRouter(LeftBar)
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  setCurrentPathAction: (data: any) => {
+  	setCurrentPath(dispatch, data)
+  },
+})
+export default connect(null, mapDispatchToProps)(withRouter(LeftBar));

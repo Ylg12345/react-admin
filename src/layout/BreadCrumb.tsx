@@ -1,7 +1,7 @@
 import { matchPath,  withRouter } from "react-router-dom";
 import { Breadcrumb } from "antd";
-import { authRoutes } from "../router";
-import { IRoute } from "../router";
+import { authRoutes } from "../router/routerMenu";
+import { IRoute } from "../router/routerConfig";
 import { ReactNode } from "react";
 
 

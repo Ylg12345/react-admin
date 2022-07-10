@@ -1,8 +1,4 @@
 export enum AdminType {
-    GET,
-    LOGIN,
-    LOGOUT,
-    SET,
-    LOADING,
-    DEL
+	LOGIN,
+	SET_CURRENT_PATH,
 }

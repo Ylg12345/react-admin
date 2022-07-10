@@ -10,15 +10,15 @@ const View = () => {
   const urlParams = new URL(window.location.href);
   const pathname = urlParams?.pathname;
 
-  const initalIsRedirect = Routes.map((item) => {
+  const initalIsRedirect = Routes.map(() => {
     return false;
   })
 
-  const [isRedirectArray, setIsRedirectArray] = useState(initalIsRedirect)
+  const [isRedirectArray, setIsRedirectArray] = useState<boolean[]>(initalIsRedirect)
 
   const isRedirect404 = () => {
     Routes.forEach((item) => {
-      if(pathname === item.path) { 
+      if(pathname === item.path || pathname === '/') { 
         setIsRedirectArray([...isRedirectArray, true]);
       }
     });
@@ -26,7 +26,7 @@ const View = () => {
 
   useEffect(() => {
     isRedirect404();
-  }, [pathname])
+  }, [pathname]);
 
   return (
     <>
